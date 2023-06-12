@@ -1,3 +1,3 @@
 # block-breaker
 ブロック崩しゲームを作成しました。
-## Javascriptを使用
+Javascriptを使用しています。
