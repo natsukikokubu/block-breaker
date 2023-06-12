@@ -1,4 +1,10 @@
 class Block {
+  static HIT_NON = 0;
+  static HIT_LEFT = 1;
+  static HIT_RIGHT = 2;
+  static HIT_TOP = 3;
+  static HIT_BOTTOM = 4;
+
   static GenerateBlocks(block_row_max) {
     let block_width = 64;
     let block_height = 32;
@@ -43,10 +49,61 @@ class Block {
     this.pos_x = x;
     this.pos_y = y;
     this.color = color;
+    this.alive = true;
   }
 
   Draw() {
     context.fillStyle = this.color;
     context.fillRect(this.pos_x, this.pos_y, this.width, this.height);
+  }
+
+  GetRect() {
+    let rect = [];
+    rect.push(this.pos_x); //0 左
+    rect.push(this.pos_x + this.width); //1 右
+    rect.push(this.pos_y); //2　上
+    rect.push(this.pos_y + this.height); //3 下
+    return rect;
+  }
+
+  Collision(ball_left, ball_right, ball_top, ball_bottom) {
+    //プレイヤーの座標取得
+    let rect = this.GetRect();
+
+    if (ball_right < rect[0]) {
+      return Block.HIT_NON;
+    }
+    if (ball_left > rect[1]) {
+      return Block.HIT_NON;
+    }
+    if (ball_bottom < rect[2]) {
+      return Block.HIT_NON;
+    }
+    if (ball_top > rect[3]) {
+      return Block.HIT_NON;
+    }
+
+    let radius = (ball_right - ball_left) / 2;
+    let ball_center_x = ball_left + radius;
+    let ball_center_y = ball_top + radius;
+
+    if (ball_center_x < rect[0]) {
+      return Block.HIT_LEFT;
+    }
+    if (ball_center_x > rect[1]) {
+      return Block.HIT_RIGHT;
+    }
+    if (ball_center_y < rect[2]) {
+      return Block.HIT_TOP;
+    }
+    return Block.HIT_BOTTOM;
+  }
+
+  SetAlive(is_alive) {
+    this.alive = is_alive;
+  }
+
+  IsAlive() {
+    return this.alive;
   }
 }
