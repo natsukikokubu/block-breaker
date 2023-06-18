@@ -6,8 +6,8 @@ class Player {
   static HIT_BOTTOM = 4;
 
   constructor() {
-    this.pos_x = 320;
-    this.pos_y = 700;
+    this.posX = 320;
+    this.posY = 700;
     this.width = 80;
     this.height = 30;
     this.grab = false;
@@ -16,17 +16,17 @@ class Player {
   Draw(context) {
     context.fillStyle = "blue";
     context.fillRect(
-      this.pos_x - this.width / 2,
-      this.pos_y - this.height / 2,
+      this.posX - this.width / 2,
+      this.posY - this.height / 2,
       this.width,
       this.height
     );
   }
 
   HitTestPoint(x, y) {
-    let left = this.pos_x - this.width / 2;
+    let left = this.posX - this.width / 2;
     let right = left + this.width;
-    let top = this.pos_y - this.height / 2;
+    let top = this.posY - this.height / 2;
     let bottom = top + this.height;
 
     if (x > left && x < right) {
@@ -37,8 +37,8 @@ class Player {
     return false;
   }
 
-  Move(move_x) {
-    this.pos_x += move_x;
+  Move(moveX) {
+    this.posX += moveX;
   }
 
   SetGrab(grabbed) {
@@ -52,10 +52,10 @@ class Player {
   //プレイヤーの座標
   GetRect() {
     let rect = [];
-    rect.push(this.pos_x - this.width / 2); //0 左
-    rect.push(this.pos_x + this.width / 2); //1 右
-    rect.push(this.pos_y - this.height / 2); //2　上
-    rect.push(this.pos_y + this.height / 2); //3 下
+    rect.push(this.posX - this.width / 2); //0 左
+    rect.push(this.posX + this.width / 2); //1 右
+    rect.push(this.posY - this.height / 2); //2　上
+    rect.push(this.posY + this.height / 2); //3 下
     return rect;
   }
   //球とプレイヤーの当たり判定

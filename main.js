@@ -30,7 +30,7 @@ function CreateInstance() {
   //-------------------------------------------------------
   //背景の生成
   //-------------------------------------------------------
-  bg = new BackGround();
+  bg = new Background();
 
   //-------------------------------------------------------
   //プレイヤーの描画
@@ -86,13 +86,13 @@ function Draw() {
 //-------------------------------------------------------
 function CollisionWithBg(rect) {
   let hit = bg.Collision(rect[0], rect[1], rect[2], rect[3]);
-  if (hit === BackGround.HIT_LEFT) {
+  if (hit === Background.HIT_LEFT) {
     ball.SetSpeedX(ball_speed);
-  } else if (hit === BackGround.HIT_RIGHT) {
+  } else if (hit === Background.HIT_RIGHT) {
     ball.SetSpeedX(-ball_speed);
-  } else if (hit === BackGround.HIT_TOP) {
+  } else if (hit === Background.HIT_TOP) {
     ball.SetSpeedY(ball_speed);
-  } else if (hit === BackGround.HIT_BOTTOM) {
+  } else if (hit === Background.HIT_BOTTOM) {
     ball.SetSpeedY(-ball_speed);
     game_manager.SetGameState(GameManager.STATE_GAME_OVER);
   }
@@ -191,11 +191,11 @@ function OnMouseDown(event) {
 //-------------------------------------------------------
 function OnMouseMove(event) {
   if (player.IsGrabbed()) {
-    let move_x = event.clientX - point_x;
-    player.Move(move_x);
+    let moveX = event.clientX - point_x;
+    player.Move(moveX);
     point_x = event.clientX;
-    const isMovingRight = move_x > 0;
-    const isMovingLeft = move_x < 0;
+    const isMovingRight = moveX > 0;
+    const isMovingLeft = moveX < 0;
 
     if (!ball.IsMoving()) {
       if (isMovingRight) {

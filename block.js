@@ -6,11 +6,11 @@ class Block {
   static HIT_BOTTOM = 4;
 
   static GenerateBlocks(block_row_max) {
-    let block_width = 64;
-    let block_height = 32;
-    let block_colum_max = 10;
+    const block_width = 64;
+    const block_height = 32;
+    const block_colum_max = 10;
 
-    let color_table = [
+    const blockColors = [
       "red",
       "blue",
       "green",
@@ -20,25 +20,25 @@ class Block {
       "purple",
     ];
 
-    let pos_x = 0;
-    let pos_y = 0;
+    let posX = 0;
+    let posY = 0;
     let color_index = 0;
     let blocks = [];
 
     for (let y = 0; y < block_row_max; y++) {
       for (let x = 0; x < block_colum_max; x++) {
-        let color = color_table[color_index];
+        let color = blockColors[color_index];
         color_index++;
-        if (color_index >= color_table.length) {
+        if (color_index >= blockColors.length) {
           color_index = 0;
         }
 
-        let tmp = new Block(pos_x, pos_y, color);
+        let tmp = new Block(posX, posY, color);
         blocks.push(tmp);
-        pos_x += block_width;
+        posX += block_width;
       }
-      pos_y += block_height;
-      pos_x = 0;
+      posY += block_height;
+      posX = 0;
     }
 
     return blocks;
@@ -46,23 +46,23 @@ class Block {
   constructor(x, y, color) {
     this.width = 64;
     this.height = 32;
-    this.pos_x = x;
-    this.pos_y = y;
+    this.posX = x;
+    this.posY = y;
     this.color = color;
     this.alive = true;
   }
 
   Draw() {
     context.fillStyle = this.color;
-    context.fillRect(this.pos_x, this.pos_y, this.width, this.height);
+    context.fillRect(this.posX, this.posY, this.width, this.height);
   }
 
   GetRect() {
     let rect = [];
-    rect.push(this.pos_x); //0 左
-    rect.push(this.pos_x + this.width); //1 右
-    rect.push(this.pos_y); //2　上
-    rect.push(this.pos_y + this.height); //3 下
+    rect.push(this.posX); //0 左
+    rect.push(this.posX + this.width); //1 右
+    rect.push(this.posY); //2　上
+    rect.push(this.posY + this.height); //3 下
     return rect;
   }
 

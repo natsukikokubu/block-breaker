@@ -1,59 +1,63 @@
 class Ball {
   constructor() {
-    this.pos_x = 320;
-    this.pos_y = 675;
+    this.posX = 320;
+    this.posY = 675;
     this.radius = 10;
-    this.move_x = 0;
-    this.move_y = 0;
+    this.moveX = 0;
+    this.moveY = 0;
   }
 
   Draw(context) {
     context.fillStyle = "white";
     context.beginPath();
-    context.arc(this.pos_x, this.pos_y, this.radius, 0, Math.PI * 2, false);
+    context.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2, false);
     context.fill();
   }
 
   SetSpeed(x, y) {
-    this.move_x = x;
-    this.move_y = y;
+    this.moveX = x;
+    this.moveY = y;
   }
 
   SetSpeedX(x) {
-    this.move_x = x;
+    this.moveX = x;
   }
 
   SetSpeedY(y) {
-    this.move_y = y;
+    this.moveY = y;
   }
 
   GetSpeedX() {
-    return this.move_x;
+    return this.moveX;
   }
 
   GetSpeedY() {
-    return this.move_y;
+    return this.moveY;
   }
 
   Update() {
-    this.pos_x += this.move_x;
-    this.pos_y += this.move_y;
+    this.posX += this.moveX;
+    this.posY += this.moveY;
   }
 
   IsMoving() {
-    if (this.move_x === 0 && this.move_y === 0) {
+    if (this.moveX === 0 && this.moveY === 0) {
       return false;
     }
     return true;
   }
 
-  //球のバウンディングボックス
+  //　球のバウンディングボックス
+  /**
+   * 球の周囲のボックスです。当たり判定をする際に
+   * @returns
+   */
   GetRect() {
     let rect = [];
-    rect.push(this.pos_x - this.radius); //0 左
-    rect.push(this.pos_x + this.radius); //1 右
-    rect.push(this.pos_y - this.radius); //2　上
-    rect.push(this.pos_y + this.radius); //3 下
+    rect.push(this.posX - this.radius); //0 左
+    rect.push(this.posX + this.radius); //1 右
+    rect.push(this.posY - this.radius); //2　上
+    rect.push(this.posY + this.radius); //3 下
     return rect;
   }
 }
