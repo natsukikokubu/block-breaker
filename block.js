@@ -26,25 +26,28 @@ class Block {
     let color_index = 0;
     let blocks = [];
 
-    /**
-    y=y軸方向に増えていくことを表している。
-    ｘ＝x軸方向に増えていくことを表している。
-    ｙがrow_max(3列)よりも少ないとき、xがcolum_max(10)列より少ないときブロックが増えることを繰り返す。
-    その際カラーは上記のブロックカラーの配列より割り当てる。カラーは7つなので、超えると0に戻る。
- */
+    /**二重ループで 、blockの縦　✕　横の階数ループする*/
     for (let y = 0; y < block_row_max; y++) {
       for (let x = 0; x < block_colum_max; x++) {
+        // blockColorsから一つ色を選択して、バラバラのいろを入れる
         let color = blockColors[color_index];
+        // 色がばらばらになるようにインクリメントする
         color_index++;
+        // color_indexがblockColorsの最後まで行ったらリセットして最初から色をいれていく
         if (color_index >= blockColors.length) {
           color_index = 0;
         }
 
+        // 得られたcolorをもとにBlockインスタンスを生成する
         let tmp = new Block(posX, posY, color);
+        // blockに詰める
         blocks.push(tmp);
+        // x軸方向の位置を、詰めたブロックの横幅分ずらす
         posX += block_width;
       }
+      // x軸方向の位置を、詰めたブロックの縦幅分分ずらす
       posY += block_height;
+      // 内部のforから抜けたということは、一行ぶん終わったということなので、xの位置をリセットする
       posX = 0;
     }
 
