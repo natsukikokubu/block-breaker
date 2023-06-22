@@ -1,3 +1,4 @@
+/**ゲーム判定をします。ゲームクリアとゲームオーバーの表示。 */
 class GameManager {
   static STATE_PLAYING = 0;
   static STATE_GAME_OVER = 1;

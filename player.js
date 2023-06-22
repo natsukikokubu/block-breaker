@@ -1,3 +1,4 @@
+/**プレイヤーが動かすブロックを表現するクラスで、球との当たり判定をしている */
 class Player {
   static HIT_NON = 0;
   static HIT_LEFT = 1;

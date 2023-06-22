@@ -1,3 +1,4 @@
+/**背景を表現するクラスで、背景の描画やボールの衝突判定をしている */
 class Background {
   static HIT_NON = 0;
   static HIT_LEFT = 1;

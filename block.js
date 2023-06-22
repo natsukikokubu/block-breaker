@@ -1,3 +1,4 @@
+/**ブロックを表現するクラスで、球との当たり判定をし、ブロックの生存か否かを表している */
 class Block {
   static HIT_NON = 0;
   static HIT_LEFT = 1;
@@ -25,6 +26,12 @@ class Block {
     let color_index = 0;
     let blocks = [];
 
+    /**
+    y=y軸方向に増えていくことを表している。
+    ｘ＝x軸方向に増えていくことを表している。
+    ｙがrow_max(3列)よりも少ないとき、xがcolum_max(10)列より少ないときブロックが増えることを繰り返す。
+    その際カラーは上記のブロックカラーの配列より割り当てる。カラーは7つなので、超えると0に戻る。
+ */
     for (let y = 0; y < block_row_max; y++) {
       for (let x = 0; x < block_colum_max; x++) {
         let color = blockColors[color_index];

@@ -1,3 +1,6 @@
+/**ボールを表現するクラス。
+ボールの動くスピード表示
+当たり判定をするためのボールのボックス表示 */
 class Ball {
   constructor() {
     this.posX = 320;
@@ -19,10 +22,11 @@ class Ball {
     this.moveY = y;
   }
 
+  /**壁との当たり判定でx軸方向のスピードのみを変更したいときに利用するため分けている */
   SetSpeedX(x) {
     this.moveX = x;
   }
-
+  /**上記に同じく */
   SetSpeedY(y) {
     this.moveY = y;
   }
@@ -35,11 +39,12 @@ class Ball {
     return this.moveY;
   }
 
+  /**ボールの座標を更新している */
   Update() {
     this.posX += this.moveX;
     this.posY += this.moveY;
   }
-
+  /**ボールが動いているときtrue,静止時false */
   IsMoving() {
     if (this.moveX === 0 && this.moveY === 0) {
       return false;
@@ -49,7 +54,7 @@ class Ball {
 
   //　球のバウンディングボックス
   /**
-   * 球の周囲のボックスです。当たり判定をする際に
+   * 球の周囲のボックス。当たり判定をする際に使用
    * @returns
    */
   GetRect() {
